@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body{
+  font-family: Inter;
+}
+.div{
+  margin: 0 auto;
+  width: 400px;
+}
+.headingbro{
+  text-align: center;
+  font-size: 29px;
+  font-weight: 600;
+  margin-bottom: 60px;
+}
+.cnL{
+  font-size: 18px;
+  color: rgb(104, 102, 102);
+}
+.cnI{
+  height: 30px;
+  width: 400px;
+}
+.csL{
+  font-size: 18px;
+  color: rgb(104, 102, 102);
+}
+.csI{
+  height: 30px;
+  width: 400px;
+}
+.dL{
+  font-size: 18px;
+  color: rgb(104, 102, 102);
+}
+.dI{
+  height: 30px;
+  width: 400px;
+}
+.booten{
+  margin-top: 40px;
+  width: 400px;
+  height: 35px;
+  background-color: rgb(67, 142, 247);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: Inter;
+  font-size: 16px;
+}

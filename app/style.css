@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.di1v{
+  font-family: Inter;
+}
+
+.classes{
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.2);
+  width:755px;
+  margin-bottom: 30px;
+}
+.line{
+  position: relative;
+  z-index: -1;
+  top: 2px;
+  margin: 0 ;
+  width: 775px;
+  height: 7px;
+  border-radius: 5px;
+  background-color: rgb(41, 127, 247);
+}
+.name{
+  font-weight: 700;
+  font-size: 20px;
+}
+.code{
+  margin-top: 27px;
+  color: grey;
+}
+.class{
+  color: white;
+}
+.tisclass{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 110px;
+  border-radius: 50px;
+  background-color: rgb(41, 127, 247);
+}
+.des{
+  color: grey;
+}
+.mk{
+  margin-top: 30px;
+  height: 40px;
+  width: 110px;
+  color: white;
+  background-color: rgb(41, 127, 247);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+}

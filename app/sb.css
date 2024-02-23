@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.content{
+  margin-left: 312px;
+}
+.sb {
+  display: flex;
+  background-color: rgb(41, 127, 247);
+  width: 300px;
+  height: 100%;
+  position: relative;
+  bottom: 0px;
+  left: 0px;
+  position: fixed;
+  overflow: auto;
+  flex-direction: column;
+  align-items: center;
+}
+.img{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.heading{
+  margin-top: 40px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center ;
+}
+.headp{
+  font-family: Inter;
+  margin-left: 5px;
+  font-weight: 500;
+  font-size: 25px;
+  color: white;
+}
+.selectClass{
+  height: 35px;
+  width: 250px;
+  background-color:rgb(106, 166, 251);
+  border: none;
+  color: white;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.3em;
+  padding-left: 15px;
+  font-size: 18px;
+}
+.selectClass:focus{
+  outline: none;
+}
+.butts{
+  width: 250px;
+  height: 35px;
+  margin-top: 20px;
+  background-color: rgb(41, 127, 247) ;
+  text-decoration: none;
+  color: white;
+  font-family: Inter;
+  font-weight: 300;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.butts:hover{
+  background-color:rgb(106, 166, 251);
+}
