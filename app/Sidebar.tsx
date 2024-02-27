@@ -1,49 +1,103 @@
-"use client"
+'use client'
 
-import React, { useState, useEffect } from 'react'
-import "./sb.css"
+import React, { useState, useEffect, useContext } from 'react'
+import './sb.css'
 import Image from 'next/image'
-import logo from "./logo.png"
+import logo from './logo.png'
 import Link from 'next/link'
-import { CgProfile } from "react-icons/cg";
-import { IoIosSettings } from "react-icons/io";
-import { CgNotes } from "react-icons/cg";
-import { PiChalkboardTeacherBold } from "react-icons/pi";
-
-
-
+import { CgProfile } from 'react-icons/cg'
+import { IoIosSettings } from 'react-icons/io'
+import { CgNotes } from 'react-icons/cg'
+import { PiChalkboardTeacherBold } from 'react-icons/pi'
+import { ClassContext } from './context'
 
 function Sidebar() {
-  const [data, setData] = useState([{"name": ""}])
-  const [currentClass, setCurrentClass] = useState("")
+  const [data, setData] = useState([{ name: '', madeById: '' }])
+  const [currentClass, setCurrentClass] = useState('')
+  const [currentId, setCurrentId] = useState('')
+  const [flag, setFlag] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:2000/full/")
+      const response = await fetch('http://localhost:2000/api/full/', {
+        method: 'GET',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      const response2 = await fetch('http://localhost:2000/api/me/', {
+        method: 'GET',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      const data3 = await response2.json()
+
+      setCurrentId(data3['message']['id'])
+
       const data2 = await response.json()
+      if (data2['message'] === 'nvt') {
+        setFlag(true)
+      }
       setData(data2)
     }
     fetchData()
-  })
+  }, [currentId, data])
   return (
     <div className="sb">
-      <div className='heading'>
-        <Image className="img" src={logo} alt={""}></Image>
-        <p className='headp'>Quizzify Genius</p>
-      </div> 
-      <select value={currentClass} onChange={(e) => {
-        setCurrentClass(e.target.value)
-      }} className='selectClass'>
-          {data.map((item) => {
-            return(
-              <option key={item.name} value={item.name}>{item.name}</option>
-            )
+      <div className="heading">
+        <Image className="img" src={logo} alt={''}></Image>
+        <p className="headp">Quizzify Genius</p>
+      </div>
+      <select
+        onChange={(e) => {
+          setCurrentClass(e.target.value)
+        }}
+        className="selectClass"
+      >
+        {!flag &&
+          data.map((item) => {
+            if (currentId === item.madeById) {
+              return (
+                <option key={item.name} value={item.name}>
+                  {item.name}
+                </option>
+              )
+            }
           })}
+        {flag && <p>Login first</p>}
       </select>
-      <Link href="/" className='butts'> <div style={{marginRight: "5px", marginTop: "2px"}}>< IoIosSettings/> </div>  Profile</Link>
-      <Link href="/quizzes" className='butts'> <div style={{marginRight: "5px", marginTop: "2px"}}>< CgNotes/> </div>  Quizzes</Link>
-      <Link href="/people" className='butts'> <div style={{marginRight: "5px", marginTop: "2px"}}>< CgProfile/> </div>  People</Link>
-      <Link href="/join" className='butts'> <div style={{marginRight: "5px", marginTop: "2px"}}><PiChalkboardTeacherBold /> </div>  Join Class</Link>
-
+      <Link href="/" className="butts">
+        {' '}
+        <div style={{ marginRight: '5px', marginTop: '2px' }}>
+          <IoIosSettings />{' '}
+        </div>{' '}
+        Profile
+      </Link>
+      <Link href="/quizzes" className="butts">
+        {' '}
+        <div style={{ marginRight: '5px', marginTop: '2px' }}>
+          <CgNotes />{' '}
+        </div>{' '}
+        Quizzes
+      </Link>
+      <Link href="/people" className="butts">
+        {' '}
+        <div style={{ marginRight: '5px', marginTop: '2px' }}>
+          <CgProfile />{' '}
+        </div>{' '}
+        People
+      </Link>
+      <Link href="/join" className="butts">
+        {' '}
+        <div style={{ marginRight: '5px', marginTop: '2px' }}>
+          <PiChalkboardTeacherBold />{' '}
+        </div>{' '}
+        Join Class
+      </Link>
+      <Link href="/log" className="butts">
+        Log in
+      </Link>
+      <Link href="/sign" className="butts">
+        Sign up
+      </Link>
     </div>
   )
 }

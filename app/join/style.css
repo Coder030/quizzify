@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+p {
+  font-family: Inter;
+}
+.jk {
+  margin-top: 30px;
+  height: 40px;
+  width: 110px;
+  color: white;
+  background-color: rgb(41, 127, 247);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+}
+.lab1 {
+  color: rgb(126, 126, 126);
+  font-size: 17px;
+  margin-right: 15px;
+}
+.inp1 {
+  height: 25px;
+  width: 200px;
+}
+.false {
+  font-family: Inter;
+  display: none;
+}
+.true {
+  font-family: Inter;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  border-radius: 10px;
+  position: absolute;
+  top: 123px;
+  height: 300px;
+  background-color: white;
+}
+.tismodal {
+  width: 440px;
+  vertical-align: middle;
+  margin: 0 auto;
+  font-family: Inter;
+}
+.closebutt {
+  height: 20px;
+  width: 20px;
+  margin-top: 5px;
+  margin-left: 18px;
+  color: white;
+  font-family: Inter;
+  font-weight: 300;
+  background-color: rgb(247, 41, 41);
+  border: none;
+  border-radius: 4px;
+}
+.cc {
+  color: rgb(126, 126, 126);
+}
+.inputCode {
+  height: 25px;
+  width: 200px;
+}
+.head-contas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ijc {
+  margin-top: 30px;
+  height: 40px;
+  width: 110px;
+  color: white;
+  background-color: rgb(41, 127, 247);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+}
+.nf {
+  color: red;
+}
+.f {
+  color: rgb(3, 209, 3);
+}
+.classes {
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.2);
+  width: 755px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  border-top: solid 6px rgb(41, 127, 247);
+}
+
+.name {
+  font-weight: 700;
+  font-size: 20px;
+}
+.code {
+  margin-top: 27px;
+  color: grey;
+}
+.class {
+  color: white;
+}
+.tisclass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 150px;
+  background-color: rgb(41, 127, 247);
+  margin-bottom: 20px;
+}
+.des {
+  font-family: Inter;
+  color: grey;
+}
+.realdes {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Burned&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.div1 {
+  background-color: #f1f1f1;
+  width: 350px;
+  border-radius: 10px;
+  height: 318px;
+  line-height: 89px;
+  padding: 50px;
+  text-align: center;
+  margin: 0 auto;
+  margin-left: 312px;
+  margin-top: 50px;
+  padding-bottom: 100px;
+}
+.lab {
+  text-align: center;
+  font-size: 20px;
+  color: black;
+}
+.inp {
+  height: 30px;
+  width: 250px;
+  border: 0.5px solid black;
+  outline: none;
+  border-radius: 3px;
+  position: relative;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}
+.button {
+  background-color: black;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  position: relative;
+  font-family: Inter;
+  font-weight: 200;
+  margin-bottom: 30px;
+  /* left: 37.5%; */
+}
+.button:hover {
+  background-color: rgb(113, 33, 243);
+}
+.ae {
+  text-align: center;
+  color: red;
+  line-height: 25px;
+  font-size: 25px;
+}
+.s {
+  text-align: center;
+  line-height: 25px;
+  font-size: 25px;
+  color: rgb(3, 203, 3);
+}
+.load {
+  text-align: center;
+  font-size: 25px;
+  position: relative;
+  bottom: 30px;
+}
+.button2 {
+  margin: 0 auto;
+  display: block;
+  width: 130px;
+  height: 40px;
+  border-radius: 7px;
+  border: none;
+  background-color: #3b82f6;
+  color: white;
+  position: relative;
+  position: relative;
+  top: 90px;
+  text-decoration: none;
+  margin-bottom: 15px;
+  font-family: Inter;
+  font-weight: 200;
+}
+.button2:hover {
+  background-color: #673bf6;
+}
+.headitis {
+  text-align: center;
+  font-family: Inter;
+  font-weight: 300;
+}
+.pyeah {
+  text-align: center;
+  margin: 0 auto;
+  height: 33px;
+  margin-bottom: 20px;
+  font-family: Inter;
+  font-weight: 200px;
+}
+.a {
+  color: black;
+  position: relative;
+  bottom: 75px;
+  /* left: 31%;  */
+  font-family: Inter;
+  font-weight: 300;
+  text-decoration: underline;
+}

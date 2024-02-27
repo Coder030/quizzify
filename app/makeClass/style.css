@@ -1,43 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-body{
+body {
   font-family: Inter;
 }
-.div{
+.div {
   margin: 0 auto;
   width: 400px;
 }
-.headingbro{
+.headingbro {
   text-align: center;
   font-size: 29px;
   font-weight: 600;
   margin-bottom: 60px;
 }
-.cnL{
+.cnL {
   font-size: 18px;
-  color: rgb(104, 102, 102);
+  color: rgb(126, 126, 126);
 }
-.cnI{
+.cnI {
   height: 30px;
   width: 400px;
 }
-.csL{
+.csL {
   font-size: 18px;
-  color: rgb(104, 102, 102);
+  color: rgb(126, 126, 126);
 }
-.csI{
+.csI {
   height: 30px;
   width: 400px;
 }
-.dL{
+.dL {
   font-size: 18px;
-  color: rgb(104, 102, 102);
+  color: rgb(126, 126, 126);
 }
-.dI{
+.dI {
   height: 30px;
   width: 400px;
 }
-.booten{
+.booten {
   margin-top: 40px;
   width: 400px;
   height: 35px;
@@ -47,4 +47,15 @@ body{
   color: white;
   font-family: Inter;
   font-size: 16px;
+}
+.input-container {
+  display: flex;
+  align-items: center;
+  width: 1000px;
+}
+.cl {
+  font-size: 13px;
+  color: grey;
+  position: relative;
+  right: 120px;
 }
