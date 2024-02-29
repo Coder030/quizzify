@@ -44,7 +44,7 @@ function Sidebar() {
   })
   useEffect(() => {
     setClassName(className)
-  }, [className])
+  }, [className, setClassName])
   return (
     <div className="sb">
       <div className="heading">
