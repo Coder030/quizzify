@@ -13,8 +13,7 @@ export default function Home() {
   const [data, setData] = useState([])
   const [flag, setFlag] = useState(false)
   const [loading, setLoading] = useState(true)
-  const { currentClass, setCurrentClass } = useContext(ClassContext)
-
+  const { className, setClassName } = useContext(ClassContext)
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('http://localhost:2000/api/full/', {
@@ -41,51 +40,54 @@ export default function Home() {
     fetchData()
     setLoading(false)
   }, [data])
-  useEffect(() => {
-    console.log(currentClass)
-  }, [currentClass])
+
   return (
     <div className="di1v">
-      <p style={{ fontSize: '20px', fontWeight: '500', textAlign: 'center' }}>
-        Your classes
-      </p>
-      <p style={{ fontSize: '30px', fontWeight: '500', textAlign: 'center' }}>
-        Username: {currentName}
-      </p>
+      <div className="headingering">
+        <p style={{ fontSize: '20px', fontWeight: '500', textAlign: 'center' }}>
+          Your classes
+        </p>
+        <button className="int">{currentName.slice(0, 1)}</button>
+        <p style={{ fontSize: '30px', fontWeight: '500', textAlign: 'center' }}>
+          Username: {currentName}
+        </p>
+      </div>
       <br />
       <p style={{ color: 'grey' }}>Classes</p>
-      {!loading &&
-        !flag &&
-        data.map((item) => {
-          if (item.madeById === currentId) {
-            return (
-              <>
-                <div className="classes" key={item.name}>
-                  <p className="name">{item.name}</p>
-                  <p className="code">Class code: {item.code}</p>
-                  <div className="tisclass">
-                    <p className="class">Sections - {item.class}</p>
+      <div className="cont">
+        {!loading &&
+          !flag &&
+          data.map((item) => {
+            if (item.madeById === currentId) {
+              return (
+                <>
+                  <div className="classes" key={item.name}>
+                    <p className="name">{item.name}</p>
+                    <p className="code">Class code: {item.code}</p>
+                    <div className="tisclass">
+                      <p className="class">Sections - {item.class}</p>
+                    </div>
+                    <button
+                      className="delete"
+                      onClick={async () => {
+                        const response = await fetch(
+                          `http://localhost:2000/api/${item.id}`,
+                          {
+                            method: 'DELETE',
+                            credentials: 'include',
+                            headers: { 'Content-Type': 'application/json' },
+                          },
+                        )
+                      }}
+                    >
+                      Delete this class?
+                    </button>
                   </div>
-                  <button
-                    className="delete"
-                    onClick={async () => {
-                      const response = await fetch(
-                        `http://localhost:2000/api/${item.id}`,
-                        {
-                          method: 'DELETE',
-                          credentials: 'include',
-                          headers: { 'Content-Type': 'application/json' },
-                        }
-                      )
-                    }}
-                  >
-                    Delete this class?
-                  </button>
-                </div>
-              </>
-            )
-          }
-        })}
+                </>
+              )
+            }
+          })}
+      </div>
       {loading && <p className="loadonme">Loading...</p>}
       {flag && <p>Login...</p>}
       <Link href="/makeClass">

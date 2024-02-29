@@ -10,10 +10,12 @@ import { IoIosSettings } from 'react-icons/io'
 import { CgNotes } from 'react-icons/cg'
 import { PiChalkboardTeacherBold } from 'react-icons/pi'
 import { ClassContext } from './context'
+import { FaKey } from 'react-icons/fa6'
+import { FaUnlock } from 'react-icons/fa'
 
 function Sidebar() {
-  const [data, setData] = useState([{ name: '', madeById: '' }])
-  const [currentClass, setCurrentClass] = useState('')
+  const [data, setData] = useState([{ name: '', madeById: '', id: '' }])
+  const { className, setClassName } = useContext(ClassContext)
   const [currentId, setCurrentId] = useState('')
   const [flag, setFlag] = useState(false)
   useEffect(() => {
@@ -39,7 +41,10 @@ function Sidebar() {
       setData(data2)
     }
     fetchData()
-  }, [currentId, data])
+  })
+  useEffect(() => {
+    setClassName(className)
+  }, [className])
   return (
     <div className="sb">
       <div className="heading">
@@ -48,15 +53,16 @@ function Sidebar() {
       </div>
       <select
         onChange={(e) => {
-          setCurrentClass(e.target.value)
+          setClassName(e.target.value)
         }}
         className="selectClass"
       >
+        <option></option>
         {!flag &&
           data.map((item) => {
             if (currentId === item.madeById) {
               return (
-                <option key={item.name} value={item.name}>
+                <option key={item.name} value={item.id}>
                   {item.name}
                 </option>
               )
@@ -71,12 +77,12 @@ function Sidebar() {
         </div>{' '}
         Profile
       </Link>
-      <Link href="/quizzes" className="butts">
+      <Link href="/mquizzes" className="butts">
         {' '}
         <div style={{ marginRight: '5px', marginTop: '2px' }}>
           <CgNotes />{' '}
         </div>{' '}
-        Quizzes
+        Make Quiz
       </Link>
       <Link href="/people" className="butts">
         {' '}
@@ -92,10 +98,20 @@ function Sidebar() {
         </div>{' '}
         Join Class
       </Link>
+      <br />
+      <br />
+      <br />
+      <br />
       <Link href="/log" className="butts">
+        <div style={{ marginRight: '5px', marginTop: '2px' }}>
+          <FaUnlock />{' '}
+        </div>{' '}
         Log in
       </Link>
       <Link href="/sign" className="butts">
+        <div style={{ marginRight: '5px', marginTop: '2px' }}>
+          <FaKey />{' '}
+        </div>{' '}
         Sign up
       </Link>
     </div>

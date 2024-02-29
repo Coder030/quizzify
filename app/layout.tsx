@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Sidebar from './Sidebar'
 import './sb.css'
-import UserProvider from './provider'
+import ClassProvider from './provider'
+import Page from './header'
 
 export const metadata: Metadata = {
   title: 'Quizzify Genius',
@@ -16,10 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <UserProvider>
+        <ClassProvider>
           <Sidebar />
           <div className="content">{children}</div>
-        </UserProvider>
+        </ClassProvider>
       </body>
     </html>
   )

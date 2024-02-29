@@ -5,7 +5,7 @@ import './style.css'
 import Modal from 'react-modal'
 
 function Page() {
-  const [currentName, setCurrentName] = useState('Loading...')
+  const [currentName, setCurrentName] = useState('')
   const [open, setOpen] = useState(false)
   const [code, setCode] = useState('')
   const [dataIt, setDataIt] = useState({ name: '' })
@@ -37,7 +37,7 @@ function Page() {
       setCurrentName(data['message']['username'])
     }
     fetchData()
-  }, [open])
+  })
   return (
     <div className="div2">
       <p
@@ -50,6 +50,9 @@ function Page() {
       >
         Joined Classes
       </p>
+      <div style={{ textAlign: 'center' }}>
+        <button className="int">{currentName.slice(0, 1)}</button>
+      </div>
       <p
         style={{
           fontSize: '30px',
@@ -61,20 +64,22 @@ function Page() {
         Username: {currentName}
       </p>
       <p style={{ fontFamily: 'Inter', color: 'grey' }}>Joined classes</p>
-      {dataWhole.length !== 0 &&
-        dataWhole.map((item) => {
-          return (
-            <>
-              <div className="classes" key={item.name}>
-                <p className="name">{item.name}</p>
-                <p className="realdes">{item.description}</p>
-                <div className="tisclass">
-                  <p className="class">Sections {item.class}</p>
+      <div className="conta">
+        {dataWhole.length !== 0 &&
+          dataWhole.map((item) => {
+            return (
+              <>
+                <div className="classes" key={item.name}>
+                  <p className="name">{item.name}</p>
+                  <p className="realdes">{item.description}</p>
+                  <div className="tisclass">
+                    <p className="class">Sections {item.class}</p>
+                  </div>
                 </div>
-              </div>
-            </>
-          )
-        })}
+              </>
+            )
+          })}
+      </div>
       {dataWhole.length === 0 && <p>You do not have any classes...</p>}
       <button
         onClick={() => {
