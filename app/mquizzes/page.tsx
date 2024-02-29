@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.css'
+import Modal from 'react-modal'
 
 function page() {
   return (
