@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Sidebar from './Sidebar'
 import './sb.css'
 import ClassProvider from './provider'
-import Page from './header'
 
 export const metadata: Metadata = {
   title: 'Quizzify Genius',
