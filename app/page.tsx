@@ -47,9 +47,7 @@ export default function Home() {
         <p style={{ fontSize: '20px', fontWeight: '500', textAlign: 'center' }}>
           Your classes
         </p>
-        {!className && (
-          <button className="int">{currentName.slice(0, 1)}</button>
-        )}
+        {!flag && <button className="int">{currentName.slice(0, 1)}</button>}
         <p style={{ fontSize: '30px', fontWeight: '500', textAlign: 'center' }}>
           Username: {currentName}
         </p>
