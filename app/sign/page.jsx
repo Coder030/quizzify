@@ -6,35 +6,46 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 function Page() {
-  const [name2, setName] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [flag, setFlag] = useState(false)
   const [message, setMessage] = useState('')
   const [load, setLoad] = useState(false)
+  const [inc, setInc] = useState(false)
   function handleChange(event) {
-    setName(event.target.value)
+    setUsername(event.target.value)
+  }
+  function handleChange2(event) {
+    setPassword(event.target.value)
   }
 
   async function makeCookie() {
     try {
-      setLoad(true)
-      const response = await fetch('http://localhost:2000/make_cookie', {
-        method: 'POST',
-        body: JSON.stringify({
-          name: name2,
-        }),
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      if (username !== '' && password !== '') {
+        setInc(false)
+        setLoad(true)
+        const response = await fetch('http://localhost:2000/make_cookie', {
+          method: 'POST',
+          body: JSON.stringify({
+            name: username,
+            password: password,
+          }),
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
 
-      const json = await response.json()
-      setLoad(false)
-      if (json.message === 'same') {
-        setFlag(true)
+        const json = await response.json()
+        setLoad(false)
+        if (json.message === 'same') {
+          setFlag(true)
+        } else {
+          setMessage('Success! New user created!')
+          setFlag(false)
+        }
       } else {
-        setMessage('Success! New user created!')
-        setFlag(false)
+        setInc(true)
       }
     } catch (error) {
       console.error('Error making cookie:', error)
@@ -52,24 +63,47 @@ function Page() {
           <p className="pyeah">Username: </p>
         </label>
         <input
-          value={name2}
+          value={username}
           autoComplete="off"
           type="text"
           name="username"
           className="inp"
           onChange={handleChange}
+          required
+        />
+        <label htmlFor="pass" className="lab">
+          <p className="pyeah2">Password: </p>
+        </label>
+        <input
+          value={password}
+          autoComplete="off"
+          type="password"
+          name="pass"
+          className="inp2"
+          onChange={handleChange2}
+          required
         />
         <button onClick={makeCookie} className="button">
           Submit
         </button>
+
+        {load && !inc && <p className="load">Loading...</p>}
+        {!load && !inc && flag && (
+          <p className="ae">
+            This username already exists. Please choose another one?
+          </p>
+        )}
+        {!load && !inc && !flag && <p className="s">{message}</p>}
+        {inc && <p className="inc">** Incomplete request **</p>}
         <p
           style={{
             textAlign: 'center',
             position: 'relative',
+            marginTop: '80px',
             bottom: '30px',
             color: 'black',
             fontFamily: 'Inter',
-            fontWeight: '200',
+            fontWeight: '400',
           }}
         >
           Already registered?
@@ -77,13 +111,6 @@ function Page() {
         <a className="a" href="/log">
           Click here to log in
         </a>
-        {load && <p className="load">Loading...</p>}
-        {!load && flag && (
-          <p className="ae">
-            This username already exists. Please choose another one?
-          </p>
-        )}
-        {!load && !flag && <p className="s">{message}</p>}
       </div>
     </>
   )

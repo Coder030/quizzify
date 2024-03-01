@@ -47,7 +47,11 @@ export default function Home() {
         <p style={{ fontSize: '20px', fontWeight: '500', textAlign: 'center' }}>
           Your classes
         </p>
-        {!flag && <button className="int">{currentName.slice(0, 1)}</button>}
+        {!flag && (
+          <button className="int">
+            {currentName.slice(0, 2).toUpperCase()}
+          </button>
+        )}
         <p style={{ fontSize: '30px', fontWeight: '500', textAlign: 'center' }}>
           Username: {currentName}
         </p>
@@ -76,7 +80,7 @@ export default function Home() {
                             method: 'DELETE',
                             credentials: 'include',
                             headers: { 'Content-Type': 'application/json' },
-                          },
+                          }
                         )
                       }}
                     >

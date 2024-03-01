@@ -25,6 +25,7 @@ function Sidebar() {
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
       })
+      console.log
       const response2 = await fetch('http://localhost:2000/api/me/', {
         method: 'GET',
         credentials: 'include',
