@@ -2,11 +2,13 @@
 
 import Image from 'next/image'
 import { useEffect, useState, useContext } from 'react'
+import { useRouter } from 'next/navigation'
 import './style.css'
 import Link from 'next/link'
 import { ClassContext } from './context'
 
 export default function Home() {
+  const router = useRouter()
   const [currentName, setCurrentName] = useState('')
   const [currentId, setCurrentId] = useState('')
   // const [data, setData] = useState([{"name":"Loading...", "code":"", "class":"", "description":"", "madeById": "", "id":""}])
@@ -31,6 +33,7 @@ export default function Home() {
       setCurrentId(data3['message']['id'])
       setCurrentName(data3['message']['username'])
       if (data2['message'] === 'nvt') {
+        router.push('/log')
         setFlag(true)
       }
 

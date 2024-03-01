@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { IoEyeOutline } from 'react-icons/io5'
 import './style.css'
 
 function Page() {
@@ -77,39 +78,42 @@ function Page() {
         <label htmlFor="pass" className="lab">
           <p className="pyeah2">Password: </p>
         </label>
-        <input
-          value={pass}
-          autoComplete="off"
-          type="password"
-          name="pass"
-          className="inp2"
-          onChange={handleChange2}
-        />
+        <div className="inp-container">
+          <input
+            value={pass}
+            autoComplete="off"
+            type="password"
+            name="pass"
+            className="inp2"
+            onChange={handleChange2}
+          />
+          <button className="see">
+            <IoEyeOutline />
+          </button>
+        </div>
         <button onClick={fetchCookie} className="button">
           Submit
         </button>
-        {!load && !inc && (
-          <p className={`fornf${flag ? '' : 'nf'}`}>{message}</p>
-        )}
-        {inc && <p className="inc">** Incomplete request **</p>}
-        <p
-          style={{
-            textAlign: 'center',
-            position: 'relative',
-            bottom: '30px',
-            color: 'black',
-            fontFamily: 'Inter',
-            fontWeight: '400',
-            marginTop: '30px',
-          }}
-        >
-          New here?
-        </p>
-        <a className="a" href="/sign">
-          Click here to sign up
-        </a>
-        {load && !inc && <p className="load">Loading...</p>}
       </div>
+      {!load && !inc && <p className={`fornf${flag ? '' : 'nf'}`}>{message}</p>}
+      {inc && <p className="inc">** Incomplete request **</p>}
+      <p
+        style={{
+          textAlign: 'center',
+          position: 'relative',
+          bottom: '30px',
+          color: 'black',
+          fontFamily: 'Inter',
+          fontWeight: '400',
+          marginTop: '50px',
+        }}
+      >
+        New here?
+      </p>
+      <a className="a" href="/sign">
+        <p style={{ textAlign: 'center' }}>Click here to sign up</p>
+      </a>
+      {load && !inc && <p className="load">Loading...</p>}
     </>
   )
 }

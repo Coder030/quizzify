@@ -12,6 +12,8 @@
   text-align: center;
   margin: 0 auto;
   padding-bottom: 100px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 .lab {
   font-size: 20px;
@@ -38,8 +40,6 @@
   color: black;
   font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
-  position: relative;
-  bottom: 30px;
 }
 .button {
   background-color: black;
@@ -60,29 +60,35 @@
 .a {
   color: black;
   position: relative;
-  bottom: 75px;
+  /* bottom: 75px; */
   /* left: 31%;  */
   font-family: Inter;
   font-weight: 500;
   text-decoration: underline;
 }
 .fornf {
-  text-align: center;
   position: relative;
   color: rgb(5, 199, 5);
   line-height: 25px;
   font-size: 25px;
   margin-top: 60px;
   margin-bottom: 30px;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 .fornfnf {
-  text-align: center;
   position: relative;
   color: red;
   line-height: 25px;
   font-size: 25px;
   margin-top: 60px;
   margin-bottom: 30px;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; /* Center the text within the container */
 }
 .load {
   text-align: center;
@@ -138,4 +144,17 @@
 .inc {
   color: rgb(255, 9, 9);
   font-size: 17px;
+  text-align: center;
+}
+.see {
+  background-color: white;
+  border: none;
+  overflow: auto;
+}
+.inp-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  margin: 0 auto;
 }
