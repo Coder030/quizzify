@@ -106,7 +106,7 @@ function Page() {
                               body: JSON.stringify({ id: className }),
                               credentials: 'include',
                               headers: { 'Content-Type': 'application/json' },
-                            },
+                            }
                           )
                           setDatatwo(`hello ${item['username']}`)
                         }}

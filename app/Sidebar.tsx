@@ -99,22 +99,6 @@ function Sidebar() {
         </div>{' '}
         Join Class
       </Link>
-      <br />
-      <br />
-      <br />
-      <br />
-      <Link href="/log" className="butts">
-        <div style={{ marginRight: '5px', marginTop: '2px' }}>
-          <FaUnlock />{' '}
-        </div>{' '}
-        Log in
-      </Link>
-      <Link href="/sign" className="butts">
-        <div style={{ marginRight: '5px', marginTop: '2px' }}>
-          <FaKey />{' '}
-        </div>{' '}
-        Sign up
-      </Link>
     </div>
   )
 }

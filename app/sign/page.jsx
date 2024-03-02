@@ -4,8 +4,12 @@ import { redirect } from 'next/navigation'
 import './style.css'
 import { useState } from 'react'
 import Link from 'next/link'
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5'
+import { useRouter } from 'next/navigation'
 
 function Page() {
+  const router = useRouter()
+  const [showPassword, setShowPassword] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [flag, setFlag] = useState(false)
@@ -43,6 +47,9 @@ function Page() {
         } else {
           setMessage('Success! New user created!')
           setFlag(false)
+          setTimeout(() => {
+            router.push('/')
+          }, 1000)
         }
       } else {
         setInc(true)
@@ -53,7 +60,7 @@ function Page() {
   }
 
   return (
-    <>
+    <div className="kind">
       <h1 className="headitis">
         This is the sign up page. This page is for you if you have not already
         registered
@@ -74,15 +81,23 @@ function Page() {
         <label htmlFor="pass" className="lab">
           <p className="pyeah2">Password: </p>
         </label>
-        <input
-          value={password}
-          autoComplete="off"
-          type="password"
-          name="pass"
-          className="inp2"
-          onChange={handleChange2}
-          required
-        />
+        <div className="inp-container2">
+          <input
+            value={password}
+            autoComplete="off"
+            type={showPassword ? 'text' : 'password'}
+            name="pass"
+            className="inp2"
+            onChange={handleChange2}
+            required
+          />
+          <button
+            className="see2"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+          </button>
+        </div>
         <button onClick={makeCookie} className="button">
           Submit
         </button>
@@ -99,7 +114,7 @@ function Page() {
           style={{
             textAlign: 'center',
             position: 'relative',
-            marginTop: '80px',
+            marginTop: '140px',
             bottom: '30px',
             color: 'black',
             fontFamily: 'Inter',
@@ -112,7 +127,7 @@ function Page() {
           Click here to log in
         </a>
       </div>
-    </>
+    </div>
   )
 }
 

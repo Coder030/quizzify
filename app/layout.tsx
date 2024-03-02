@@ -1,23 +1,22 @@
-import type { Metadata } from 'next'
+'use client'
+
 import Sidebar from './Sidebar'
 import './sb.css'
 import ClassProvider from './provider'
-
-export const metadata: Metadata = {
-  title: 'Quizzify Genius',
-  description: 'Made by Kartik',
-}
+import { usePathname } from 'next/navigation'
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const path = usePathname()
+  const hideBar = path === '/log' || path === '/sign'
   return (
     <html lang="en">
       <body>
         <ClassProvider>
-          <Sidebar />
+          {!hideBar && <Sidebar />}
           <div className="content">{children}</div>
         </ClassProvider>
       </body>

@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+.kind {
+  margin-right: 312px;
+}
+
 .div1 {
   width: 350px;
   box-shadow: 0px 03px 80px rgba(0, 0, 0, 0.5);
@@ -13,11 +17,13 @@
   margin: 0 auto;
   padding-bottom: 100px;
 }
+
 .lab {
   text-align: center;
   font-size: 20px;
   color: black;
 }
+
 .inp {
   height: 30px;
   width: 250px;
@@ -29,6 +35,7 @@
   font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
 }
+
 .inp2 {
   height: 30px;
   width: 250px;
@@ -39,9 +46,29 @@
   color: black;
   font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
-  position: relative;
-  bottom: 30px;
 }
+
+.inp-container2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.see2 {
+  background-color: white;
+  border: none;
+  overflow: auto;
+  position: absolute;
+  right: 5px;
+  top: 50%; /* Adjust the value based on your preference */
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: grey;
+}
+
 .button {
   background-color: black;
   border: none;
@@ -53,11 +80,12 @@
   font-family: Inter;
   font-weight: 200;
   margin-bottom: 30px;
-  /* left: 37.5%; */
 }
+
 .button:hover {
   background-color: rgb(113, 33, 243);
 }
+
 .ae {
   text-align: center;
   color: red;
@@ -66,7 +94,9 @@
   position: relative;
   top: 40px;
   z-index: 2;
+  margin-top: 100px;
 }
+
 .s {
   text-align: center;
   line-height: 25px;
@@ -75,7 +105,9 @@
   position: relative;
   top: 40px;
   z-index: 2;
+  margin-top: 100px;
 }
+
 .load {
   text-align: center;
   font-size: 25px;
@@ -85,6 +117,7 @@
   top: 40px;
   z-index: 2;
 }
+
 .button2 {
   margin: 0 auto;
   display: block;
@@ -102,15 +135,18 @@
   font-family: Inter;
   font-weight: 200;
 }
+
 .button2:hover {
   background-color: #673bf6;
 }
+
 .headitis {
   text-align: center;
   font-family: Inter;
   font-weight: 300;
   margin-bottom: 60px;
 }
+
 .pyeah {
   text-align: center;
   margin: 0 auto;
@@ -119,6 +155,7 @@
   font-family: Inter;
   font-weight: 200;
 }
+
 .pyeah2 {
   text-align: center;
   height: 33px;
@@ -127,17 +164,19 @@
   position: relative;
   bottom: 30px;
 }
+
 .a {
   color: black;
   position: relative;
   bottom: 75px;
-  /* left: 31%;  */
   font-family: Inter;
   font-weight: 500;
   text-decoration: underline;
 }
 
 .inc {
+  margin-top: 100px;
   color: rgb(255, 9, 9);
   font-size: 17px;
+  margin-bottom: 0;
 }

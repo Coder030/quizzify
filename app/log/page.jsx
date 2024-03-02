@@ -2,10 +2,14 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { IoEyeOutline } from 'react-icons/io5'
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5'
+
 import './style.css'
+import { useRouter } from 'next/navigation'
 
 function Page() {
+  const [showPassword, setShowPassword] = useState(false)
+  const router = useRouter()
   const [username, setUsername] = useState('')
   const [pass, setPass] = useState('')
   const [message, setMessage] = useState('')
@@ -47,6 +51,9 @@ function Page() {
           setMessage('Success! The user has been found')
           process.env.logged
           setFlag(true)
+          setTimeout(() => {
+            router.push('/')
+          }, 1000)
         }
       } else {
         setInc(true)
@@ -58,7 +65,7 @@ function Page() {
   }
 
   return (
-    <>
+    <div className="kindabody">
       <h1 className="headitis">
         This is the log in page. This page is for you if you have already
         registered
@@ -82,13 +89,16 @@ function Page() {
           <input
             value={pass}
             autoComplete="off"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             name="pass"
             className="inp2"
             onChange={handleChange2}
           />
-          <button className="see">
-            <IoEyeOutline />
+          <button
+            className="see"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
           </button>
         </div>
         <button onClick={fetchCookie} className="button">
@@ -97,6 +107,7 @@ function Page() {
       </div>
       {!load && !inc && <p className={`fornf${flag ? '' : 'nf'}`}>{message}</p>}
       {inc && <p className="inc">** Incomplete request **</p>}
+      {load && !inc && <p className="load">Loading...</p>}
       <p
         style={{
           textAlign: 'center',
@@ -113,8 +124,7 @@ function Page() {
       <a className="a" href="/sign">
         <p style={{ textAlign: 'center' }}>Click here to sign up</p>
       </a>
-      {load && !inc && <p className="load">Loading...</p>}
-    </>
+    </div>
   )
 }
 
