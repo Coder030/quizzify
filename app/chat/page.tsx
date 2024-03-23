@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import './style.css'
 import { ClassContext } from '../context'
 import { GrSend } from 'react-icons/gr'
@@ -18,6 +18,7 @@ function Page() {
   const [initialMess, setInitialMess] = useState([])
   const [currentId, setCurrentId] = useState('')
   const [currentName, setCurrentName] = useState('')
+  const socketRef = useRef(null)
 
   const convert = async (id) => {
     const rep = await fetch('http://localhost:2000/api/convert', {
@@ -37,10 +38,15 @@ function Page() {
   //   // window.scrollTo(0, document.body.scrollHeight);
   //   console.log(msg)
   // })
-
   useEffect(() => {
-    const socket = io('http://localhost:2000/chat')
-    setSocket(socket)
+    // Check if we are in the browser environment
+    if (!socketRef.current) {
+      console.log('hey')
+
+      socketRef.current = io('http://localhost:2000/chat')
+      const socket = socketRef.current
+      setSocket(socket)
+    }
   }, [])
   // useEffect(() => {
   //   //disconnect socket when the component unmounts
