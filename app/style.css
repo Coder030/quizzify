@@ -92,3 +92,11 @@
 .headingering {
   text-align: center;
 }
+.cop {
+  background-color: white;
+  position: relative;
+  top: 1px;
+  border: none;
+  font-size: 18px;
+  color: grey;
+}

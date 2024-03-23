@@ -51,7 +51,7 @@ function Page() {
         Joined Classes
       </p>
       <div style={{ textAlign: 'center' }}>
-        <button className="int">{currentName.slice(0, 1)}</button>
+        <button className="int">{currentName.slice(0, 1).toUpperCase()}</button>
       </div>
       <p
         style={{

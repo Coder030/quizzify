@@ -113,7 +113,7 @@ p {
   justify-content: center;
   align-items: center;
   height: 30px;
-  width: 150px;
+  width: 170px;
   background-color: rgb(41, 127, 247);
   margin-bottom: 20px;
 }
@@ -128,4 +128,13 @@ p {
 .conta {
   display: flex;
   flex-wrap: wrap;
+}
+.int {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  border: none;
+  background-color: rgb(41, 127, 247);
+  color: white;
+  font-size: 25px;
 }

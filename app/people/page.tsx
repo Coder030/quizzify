@@ -45,7 +45,6 @@ function Page() {
   }, [data, datatwo])
   useEffect(() => {
     async function fetchData() {
-      console.log()
       const response100 = await fetch('http://localhost:2000/api/get_creator', {
         method: 'POST',
         body: JSON.stringify({ id: data['madeById'] }),
@@ -91,7 +90,7 @@ function Page() {
                   <>
                     <div id="stu" className="students">
                       <button className="initial">
-                        {item && item['username'].slice(0, 2)}
+                        {item && item['username'].slice(0, 1)}
                       </button>
                       <p className="nameTis">{item['username']}</p>
                       <button

@@ -7,11 +7,9 @@ import logo from './logo.png'
 import Link from 'next/link'
 import { CgProfile } from 'react-icons/cg'
 import { IoIosSettings } from 'react-icons/io'
-import { CgNotes } from 'react-icons/cg'
+import { IoChatbubbleEllipsesOutline } from 'react-icons/io5'
 import { PiChalkboardTeacherBold } from 'react-icons/pi'
 import { ClassContext } from './context'
-import { FaKey } from 'react-icons/fa6'
-import { FaUnlock } from 'react-icons/fa'
 
 function Sidebar() {
   const [data, setData] = useState([{ name: '', madeById: '', id: '' }])
@@ -25,7 +23,6 @@ function Sidebar() {
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
       })
-      console.log
       const response2 = await fetch('http://localhost:2000/api/me/', {
         method: 'GET',
         credentials: 'include',
@@ -78,12 +75,12 @@ function Sidebar() {
         </div>{' '}
         Profile
       </Link>
-      <Link href="/mquizzes" className="butts">
+      <Link href="/chat" className="butts">
         {' '}
         <div style={{ marginRight: '5px', marginTop: '2px' }}>
-          <CgNotes />{' '}
+          <IoChatbubbleEllipsesOutline />{' '}
         </div>{' '}
-        Make Quiz
+        Chat
       </Link>
       <Link href="/people" className="butts">
         {' '}

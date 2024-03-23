@@ -5,6 +5,7 @@ import { useEffect, useState, useContext } from 'react'
 import { useRouter } from 'next/navigation'
 import './style.css'
 import Link from 'next/link'
+import { FaRegCopy } from 'react-icons/fa'
 import { ClassContext } from './context'
 
 export default function Home() {
@@ -42,7 +43,7 @@ export default function Home() {
     setLoading(true)
     fetchData()
     setLoading(false)
-  }, [data])
+  }, [data, router])
 
   return (
     <div className="di1v">
@@ -52,7 +53,7 @@ export default function Home() {
         </p>
         {!flag && (
           <button className="int">
-            {currentName.slice(0, 2).toUpperCase()}
+            {currentName.slice(0, 1).toUpperCase()}
           </button>
         )}
         <p style={{ fontSize: '30px', fontWeight: '500', textAlign: 'center' }}>
@@ -70,7 +71,19 @@ export default function Home() {
                 <>
                   <div className="classes" key={item.name}>
                     <p className="name">{item.name}</p>
-                    <p className="code">Class code: {item.code}</p>
+                    <p className="code">
+                      Class code: {item.code}{' '}
+                      {
+                        <button
+                          className="cop"
+                          onClick={() => {
+                            navigator.clipboard.writeText(String(item.code))
+                          }}
+                        >
+                          <FaRegCopy />
+                        </button>
+                      }
+                    </p>
                     <div className="tisclass">
                       <p className="class">Sections - {item.class}</p>
                     </div>

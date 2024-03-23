@@ -17,7 +17,9 @@ export default function RootLayout({
       <body>
         <ClassProvider>
           {!hideBar && <Sidebar />}
-          <div className="content">{children}</div>
+          <div className="content" id="root">
+            {children}
+          </div>
         </ClassProvider>
       </body>
     </html>

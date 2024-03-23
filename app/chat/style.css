@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body {
+  font-family: Inter;
+}
+
+.headha {
+  font-family: Inter;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 35px;
+}
+.mq {
+  margin-top: 30px;
+  height: 40px;
+  width: 110px;
+  color: white;
+  background-color: rgb(41, 127, 247);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+}
+.inp {
+  white-space: normal;
+  width: 250px;
+  border: 1px solid black;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.3em;
+  padding-left: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 40px;
+  font-size: 18px;
+  display: block;
+  margin: 0 auto;
+}
+.ns {
+  margin-top: 55px;
+  font-size: 25px;
+  text-align: center;
+}
+.ns2 {
+  margin-top: 55px;
+  font-size: 25px;
+  text-align: center;
+  font-weight: 600;
+}
+.other {
+  padding: 10px;
+  background-color: rgb(230, 228, 228);
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 200px;
+}
+.me {
+  padding: 10px;
+  background-color: rgb(210, 237, 246);
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 200px;
+}
+.messagesContainer {
+  margin-top: 20px; /* Adjust top margin to prevent overlap with the sticky footer */
+  max-height: calc(100vh - 100px); /* Adjust max height as needed */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds container height */
+}
+
+.stickyFooter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.mainbruh {
+  flex: 1; /* Allow the input field to expand to fill remaining space */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: none;
+}
+
+.bootySend {
+  flex-shrink: 0; /* Prevent the button from shrinking */
+  margin-left: 10px; /* Add space between input field and button */
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.ps1 {
+  margin: 0;
+  margin-bottom: 06px;
+  margin-top: 5px;
+  font-weight: 500;
+}
+.ps2 {
+  margin: 0;
+  margin-bottom: 06px;
+  margin-top: 9px;
+  font-size: 13px;
+  font-weight: 200;
+}
