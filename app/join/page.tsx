@@ -19,17 +19,23 @@ function Page() {
   useEffect(() => {
     Modal.setAppElement(document.body)
     async function fetchData() {
-      const response2 = await fetch('http://localhost:2000/api/me/', {
-        method: 'GET',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const response2 = await fetch(
+        'https://classroom-backend-u7q5.onrender.com/api/me/',
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
       const data = await response2.json()
-      const response = await fetch('http://localhost:2000/api/class_member', {
-        method: 'GET',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const response = await fetch(
+        'https://classroom-backend-u7q5.onrender.com/api/class_member',
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
       const data2 = await response.json()
 
       setDataWhole(data2)
@@ -115,14 +121,17 @@ function Page() {
                 setLoading(true)
                 setFlagOne(false)
                 setflagtwo(true)
-                const response = await fetch('http://localhost:2000/api/join', {
-                  method: 'POST',
-                  body: JSON.stringify({
-                    code: code,
-                  }),
-                  credentials: 'include',
-                  headers: { 'Content-Type': 'application/json' },
-                })
+                const response = await fetch(
+                  'https://classroom-backend-u7q5.onrender.com/api/join',
+                  {
+                    method: 'POST',
+                    body: JSON.stringify({
+                      code: code,
+                    }),
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                  }
+                )
                 const data = await response.json()
 
                 setDataIt(data)

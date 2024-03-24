@@ -22,12 +22,15 @@ function Page() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('http://localhost:2000/api/people', {
-        method: 'POST',
-        body: JSON.stringify({ id: className }),
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const response = await fetch(
+        'https://classroom-backend-u7q5.onrender.com/api/people',
+        {
+          method: 'POST',
+          body: JSON.stringify({ id: className }),
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
       const dataTemp = await response.json()
       setData(dataTemp)
     }
@@ -45,12 +48,15 @@ function Page() {
   }, [data, datatwo])
   useEffect(() => {
     async function fetchData() {
-      const response100 = await fetch('http://localhost:2000/api/get_creator', {
-        method: 'POST',
-        body: JSON.stringify({ id: data['madeById'] }),
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const response100 = await fetch(
+        'https://classroom-backend-u7q5.onrender.com/api/get_creator',
+        {
+          method: 'POST',
+          body: JSON.stringify({ id: data['madeById'] }),
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
       const data100 = await response100.json()
       setCreator(data100['username'])
     }
@@ -99,7 +105,7 @@ function Page() {
                           const stu = document.getElementById('stu')
                           stu.style.display = 'none'
                           await fetch(
-                            `http://localhost:2000/api/${item['username']}`,
+                            `https://classroom-backend-u7q5.onrender.com/api/${item['username']}`,
                             {
                               method: 'POST',
                               body: JSON.stringify({ id: className }),

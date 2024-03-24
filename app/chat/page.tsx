@@ -5,12 +5,18 @@ import './style.css'
 import { ClassContext } from '../context'
 import { GrSend } from 'react-icons/gr'
 import { io } from 'socket.io-client'
+import { animateScroll as scroll } from 'react-scroll'
 
 function Page() {
+  const scrollToBottom = () => {
+    // Scroll to the bottom of the element.
+    document.body.scrollTop = document.body.scrollHeight
+  }
   const { className, setClassName, chatName, setChatName } =
     useContext(ClassContext)
   const [socket, setSocket] = useState(null)
   const [classId, setClassId] = useState('')
+  const [online, setOnline] = useState([])
   const [text, setText] = useState('')
   const [mname, setMname] = useState('')
   const [data2, setData2] = useState([])
@@ -21,98 +27,62 @@ function Page() {
   const socketRef = useRef(null)
 
   const convert = async (id) => {
-    const rep = await fetch('http://localhost:2000/api/convert', {
-      method: 'POST',
-      body: JSON.stringify({ id: id }),
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-    })
+    const rep = await fetch(
+      'https://classroom-backend-u7q5.onrender.com/api/convert',
+      {
+        method: 'POST',
+        body: JSON.stringify({ id: id }),
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
     const name = await rep.json()
     return name
   }
-  // const messages = document.getElementsByClassName('messagesContainer')
-  // socket.on('cm', (msg) => {
-  //   // const item = document.createElement("li");
-  //   // item.textContent = msg;
-  //   // messages.appendChild(item);
-  //   // window.scrollTo(0, document.body.scrollHeight);
-  //   console.log(msg)
-  // })
-  useEffect(() => {
-    // Check if we are in the browser environment
-    if (!socketRef.current) {
-      console.log('hey')
 
-      socketRef.current = io('http://localhost:2000/chat')
+  useEffect(() => {
+    if (!socketRef.current) {
+      socketRef.current = io('https://classroom-backend-u7q5.onrender.com/chat')
       const socket = socketRef.current
       setSocket(socket)
     }
   }, [])
-  // useEffect(() => {
-  //   //disconnect socket when the component unmounts
-  //   if (!socket) return
-  //   return () => {
-  //     console.log('disconnecting socket')
-  //     socket.disconnect()
-  //   }
-  // }, [])
-  // useEffect(() => {
-  //   socket.on('mm', (text, cn, ci, ci2) => {
-  //     console.log(text, cn, ci, ci2)
-  //   })
-  // }, [socket])
   const handleClick = async (e) => {
     e.preventDefault()
-    if (chatName) {
-      console.log(text)
+    if (chatName && text) {
       setText('')
-      // await fetch('http://localhost:2000/api/create_mess', {
-      //   method: 'POST',
-      //   body: JSON.stringify({
-      //     text: text,
-      //     made: currentName,
-      //     mbi: currentId,
-      //     ci: classId,
-      //   }),
-      //   credentials: 'include',
-      //   headers: { 'Content-Type': 'application/json' },
-      // })
       socket.emit('cm', text, currentName, currentId, classId)
-      console.log(socket.emit('cm', text, currentName, currentId, classId))
     }
   }
 
-  // useEffect(() => {
-  //   socket.on('cm', (msg) => {
-  //     console.log(msg)
-
-  //     const messages = document.getElementById('mess')
-  //     const item = document.createElement('p')
-  //     item.textContent = msg
-  //     messages.appendChild(item)
-  //     window.scrollTo(0, document.body.scrollHeight)
-  //   })
-  // }, [socket])
-
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('http://localhost:2000/api/full/', {
-        method: 'GET',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const response = await fetch(
+        'https://classroom-backend-u7q5.onrender.com/api/full/',
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
       const data = await response.json()
-      const response2 = await fetch('http://localhost:2000/api/me/', {
-        method: 'GET',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const response2 = await fetch(
+        'https://classroom-backend-u7q5.onrender.com/api/me/',
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
       const data3 = await response2.json()
-      const response3 = await fetch('http://localhost:2000/api/class_member', {
-        method: 'GET',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const response3 = await fetch(
+        'https://classroom-backend-u7q5.onrender.com/api/class_member',
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
       const data4 = await response3.json()
       setData10(data4)
       setCurrentId(data3['message']['id'])
@@ -120,20 +90,30 @@ function Page() {
       setData2(data)
     }
     fetchData()
-  }, [data2, currentId, data10])
+  }, [])
+  useEffect(() => {
+    if (socket && currentName && mname) {
+      socket.emit('set-name', currentName, mname)
+      socket.on('find_online', (data) => {
+        setOnline(data)
+      })
+    }
+  }, [online, mname, socket, currentName])
 
   useEffect(() => {
     async function fetchy() {
       const pinp = document.getElementById('imp')
-      const response10 = await fetch('http://localhost:2000/api/people', {
-        method: 'POST',
-        body: JSON.stringify({ id: chatName }),
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const response10 = await fetch(
+        'https://classroom-backend-u7q5.onrender.com/api/people',
+        {
+          method: 'POST',
+          body: JSON.stringify({ id: chatName }),
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
 
       if (!response10.ok) {
-        // Handle the error, for example:
         console.error('Error during POST request:', response10.statusText)
       } else {
         const dataTemp = await response10.json()
@@ -144,25 +124,47 @@ function Page() {
     if (chatName) {
       fetchy()
     }
-  })
+  }, [chatName])
   useEffect(() => {
     const f = async () => {
-      const rep = await fetch('http://localhost:2000/api/full_message', {
-        method: 'POST',
-        body: JSON.stringify({ id: chatName }),
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const rep = await fetch(
+        'https://classroom-backend-u7q5.onrender.com/api/full_message',
+        {
+          method: 'POST',
+          body: JSON.stringify({ id: chatName }),
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
       const data = await rep.json()
       setInitialMess(data)
-
-      // setInitialMess(data)
-      // console.log(initialMess)
     }
     if (!(mname === '')) {
       f()
     }
   }, [mname, chatName])
+  useEffect(() => {
+    if (socket && currentId) {
+      const messages = document.getElementById('yay')
+      socket.on('mm', (text, cn, ci, ci2) => {
+        const item1 = document.createElement('p')
+        item1.textContent = text
+        item1.className = 'ps1'
+        const item2 = document.createElement('p')
+        item2.textContent = `by ${ci === currentId ? 'You' : cn}`
+        item2.className = 'ps2'
+        const main = document.createElement('div')
+        main.classList.add(ci === currentId ? 'me' : 'other')
+        messages.appendChild(main)
+        main.appendChild(item1)
+        main.appendChild(item2)
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth', // Optionally, you can add smooth scrolling behavior
+        })
+      })
+    }
+  }, [socket, currentId])
 
   return (
     <>
@@ -194,7 +196,7 @@ function Page() {
       </select>
       {!chatName && <p className="ns">No class selected...</p>}
       {chatName && <p className="ns2">{mname}</p>}
-      <div className="messagesContainer">
+      <div className="messagesContainer" id="yay">
         {initialMess.map((item) => (
           <div
             key={item.id}
@@ -208,19 +210,38 @@ function Page() {
         ))}
       </div>
       <form className="stickyFooter" onSubmit={handleClick}>
-        <input
-          autoComplete="off"
-          className="mainbruh"
-          type="text"
-          value={text}
-          onChange={(e) => {
-            setText(e.target.value)
-          }}
-        />
-        <button type="submit" className="bootySend">
-          <GrSend />
-        </button>
+        <div className="inputContainer">
+          <input
+            autoComplete="off"
+            className="mainbruh"
+            type="text"
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value)
+            }}
+          />
+          <button type="submit" className="bootySend">
+            <GrSend />
+          </button>
+        </div>
       </form>
+      <br />
+      <br />
+      <br />
+      <br />
+      {chatName && (
+        <div className="container2">
+          <p className="on">Online</p>
+          {online.map((item) => {
+            return (
+              <div key={item} className="ons">
+                <button className="initial2">{item['name'].slice(0, 1)}</button>
+                <p style={{ margin: 0 }}>{item['name']}</p>
+              </div>
+            )
+          })}
+        </div>
+      )}
     </>
   )
 }

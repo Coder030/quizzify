@@ -48,48 +48,80 @@ body {
   text-align: center;
   font-weight: 600;
 }
-.other {
-  padding: 10px;
-  background-color: rgb(230, 228, 228);
-  margin-bottom: 20px;
-  border-radius: 10px;
-  width: 200px;
-}
-.me {
-  padding: 10px;
-  background-color: rgb(210, 237, 246);
-  margin-bottom: 20px;
-  border-radius: 10px;
-  width: 200px;
-}
+
 .messagesContainer {
-  margin-top: 20px; /* Adjust top margin to prevent overlap with the sticky footer */
-  max-height: calc(100vh - 100px); /* Adjust max height as needed */
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds container height */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.other {
+  align-self: flex-start;
+  background-color: rgb(230, 228, 228);
+  margin-bottom: 10px;
+  padding: 10px;
+  clip-path: polygon(
+    100% 0%,
+    0% 0%,
+    0% 75%,
+    25% 75%,
+    25% 100%,
+    50% 75%,
+    100% 75%
+  );
+  margin-left: 250px;
+  height: fit-content;
+  padding-bottom: 40px;
+  width: fit-content;
+  max-width: 475px;
+}
+
+.me {
+  align-self: flex-end;
+  background-color: rgb(210, 237, 246);
+  margin-bottom: 10px;
+  padding: 10px;
+  margin-right: 250px;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 75%,
+    75% 75%,
+    75% 100%,
+    50% 75%,
+    0% 75%
+  );
+  height: fit-content;
+  padding-bottom: 40px;
+  width: fit-content;
+  max-width: 475px;
 }
 
 .stickyFooter {
-  position: relative;
+  flex-shrink: 0; /* Don't shrink the footer */
+}
+
+.inputContainer {
+  position: fixed;
+  bottom: 10px; /* Adjust the distance from the bottom as needed */
+  left: 324px; /* Adjust the distance from the left as needed */
+  width: 1080px; /* Adjust the width as needed */
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
 }
 
 .mainbruh {
-  flex: 1; /* Allow the input field to expand to fill remaining space */
+  flex: 1;
   padding: 10px;
   font-size: 16px;
   border: 1px solid black;
   border-radius: 5px;
   outline: none;
+  margin-right: 10px;
 }
 
 .bootySend {
-  flex-shrink: 0; /* Prevent the button from shrinking */
-  margin-left: 10px; /* Add space between input field and button */
-  background-color: #007bff; /* Button background color */
-  color: #fff; /* Button text color */
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px 15px;
@@ -109,4 +141,44 @@ body {
   margin-top: 9px;
   font-size: 13px;
   font-weight: 200;
+}
+.container2 {
+  position: absolute;
+  top: 0; /* Align to the top */
+  right: 0; /* Align to the right */
+  background-color: #f0f0f0;
+  min-height: calc(min-content + 500px);
+  margin-top: 220px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 200px;
+  width: 100px;
+  text-align: center;
+}
+.on {
+  font-size: 30px;
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.ons {
+  margin: 0;
+  border-top: 1px solid black;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+}
+.initial2 {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  border: none;
+  background-color: rgb(41, 127, 247);
+  color: white;
+  font-size: 20px;
+  margin-right: 10px;
 }
