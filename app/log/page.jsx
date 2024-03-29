@@ -28,20 +28,17 @@ function Page() {
       if (username !== '' && pass !== '') {
         setInc(false)
         setLoad(true)
-        const response = await fetch(
-          'https://classroom-backend-u7q5.onrender.com/get_cookie',
-          {
-            method: 'POST',
-            body: JSON.stringify({
-              name: username,
-              password: pass,
-            }),
-            credentials: 'include',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
+        const response = await fetch('http://localhost:2000/get_cookie', {
+          method: 'POST',
+          body: JSON.stringify({
+            name: username,
+            password: pass,
+          }),
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
 
         const json = await response.json()
         setLoad(false)

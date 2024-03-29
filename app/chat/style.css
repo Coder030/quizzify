@@ -6,23 +6,12 @@ body {
 
 .headha {
   font-family: Inter;
-  text-align: center;
   font-weight: 500;
-  margin-top: 35px;
-}
-.mq {
-  margin-top: 30px;
-  height: 40px;
-  width: 110px;
-  color: white;
-  background-color: rgb(41, 127, 247);
-  border: none;
-  border-radius: 4px;
-  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+  margin-top: 75px;
+  text-align: center;
 }
 .inp {
   white-space: normal;
-  width: 250px;
   border: 1px solid black;
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -36,17 +25,13 @@ body {
   font-size: 18px;
   display: block;
   margin: 0 auto;
-}
-.ns {
-  margin-top: 55px;
-  font-size: 25px;
-  text-align: center;
+  position: relative;
 }
 .ns2 {
-  margin-top: 55px;
+  /* margin-top: 55px; */
   font-size: 25px;
-  text-align: center;
   font-weight: 600;
+  text-align: center;
 }
 
 .messagesContainer {
@@ -60,20 +45,14 @@ body {
   background-color: rgb(230, 228, 228);
   margin-bottom: 10px;
   padding: 10px;
-  clip-path: polygon(
-    100% 0%,
-    0% 0%,
-    0% 75%,
-    25% 75%,
-    25% 100%,
-    50% 75%,
-    100% 75%
-  );
-  margin-left: 250px;
   height: fit-content;
-  padding-bottom: 40px;
+  margin-left: 200px;
   width: fit-content;
-  max-width: 475px;
+  /* max-width: 475px; */
+  position: relative;
+  top: 120px;
+  z-index: -10;
+  border-radius: 15px;
 }
 
 .me {
@@ -81,20 +60,14 @@ body {
   background-color: rgb(210, 237, 246);
   margin-bottom: 10px;
   padding: 10px;
-  margin-right: 250px;
-  clip-path: polygon(
-    0% 0%,
-    100% 0%,
-    100% 75%,
-    75% 75%,
-    75% 100%,
-    50% 75%,
-    0% 75%
-  );
-  height: fit-content;
-  padding-bottom: 40px;
+  margin-right: 200px;
   width: fit-content;
   max-width: 475px;
+  position: relative;
+  z-index: -10;
+  margin-bottom: 30px;
+  top: 120px;
+  border-radius: 15px;
 }
 
 .stickyFooter {
@@ -105,7 +78,8 @@ body {
   position: fixed;
   bottom: 10px; /* Adjust the distance from the bottom as needed */
   left: 324px; /* Adjust the distance from the left as needed */
-  width: 1080px; /* Adjust the width as needed */
+  width: 1050px;
+  height: 40px; /* Adjust the width as needed */
   display: flex;
 }
 
@@ -143,33 +117,31 @@ body {
   font-weight: 200;
 }
 .container2 {
-  position: absolute;
-  top: 0; /* Align to the top */
-  right: 0; /* Align to the right */
+  display: flex;
+  height: 30px;
+  position: fixed; /* Fixed positioning */
+  top: 0; /* Position at the top */
+  left: 0; /* Align left */
+  z-index: 999; /* Ensure it's on top of other content */
   background-color: #f0f0f0;
-  min-height: calc(min-content + 500px);
-  margin-top: 220px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 200px;
-  width: 100px;
-  text-align: center;
+  width: 1105px;
+  padding: 10px;
+  margin-left: 300px;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
 }
-.on {
+/* .on {
   font-size: 30px;
   margin: 0;
   margin-top: 10px;
   margin-bottom: 20px;
-}
+} */
 .ons {
   margin: 0;
-  border-top: 1px solid black;
   padding: 0;
-  display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
   margin-bottom: 0;
 }
 .initial2 {
@@ -180,5 +152,39 @@ body {
   background-color: rgb(41, 127, 247);
   color: white;
   font-size: 20px;
-  margin-right: 10px;
+  margin: 0;
+  margin-right: 30px;
+}
+.whichChat {
+  position: absolute;
+  height: fit-content;
+  min-height: 100%;
+  width: 180px;
+  background-color: rgb(237, 235, 235);
+  padding-top: 5px;
+  margin-left: 0;
+  top: 150px;
+}
+.chats {
+  font-size: 20px;
+  border-bottom: 1px solid rgb(195, 193, 193);
+  padding: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.chats:hover {
+  cursor: pointer;
+  background-color: rgb(206, 206, 206);
+}
+.greendot {
+  display: flex;
+  height: 11px;
+  width: 11px;
+  background-color: rgb(2, 251, 2);
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  right: -19px;
+  top: -10px;
+  flex-direction: row;
 }

@@ -6,8 +6,10 @@ import { ClassContext } from '../context'
 import { GrSend } from 'react-icons/gr'
 import { io } from 'socket.io-client'
 import { animateScroll as scroll } from 'react-scroll'
+import { useRouter } from 'next/navigation'
 
 function Page() {
+  const router = useRouter()
   const scrollToBottom = () => {
     // Scroll to the bottom of the element.
     document.body.scrollTop = document.body.scrollHeight
@@ -27,29 +29,32 @@ function Page() {
   const socketRef = useRef(null)
 
   const convert = async (id) => {
-    const rep = await fetch(
-      'https://classroom-backend-u7q5.onrender.com/api/convert',
-      {
-        method: 'POST',
-        body: JSON.stringify({ id: id }),
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    )
+    const rep = await fetch('http://localhost:2000/api/convert', {
+      method: 'POST',
+      body: JSON.stringify({ id: id }),
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+    })
     const name = await rep.json()
     return name
   }
 
   useEffect(() => {
-    if (!socketRef.current) {
-      socketRef.current = io('https://classroom-backend-u7q5.onrender.com/chat')
+    if (!socketRef.current && className) {
+      console.log(className)
+
+      socketRef.current = io('http://localhost:2000/chat', {
+        query: {
+          classId: className,
+        },
+      })
       const socket = socketRef.current
       setSocket(socket)
     }
-  }, [])
+  }, [className])
   const handleClick = async (e) => {
     e.preventDefault()
-    if (chatName && text) {
+    if (className && text) {
       setText('')
       socket.emit('cm', text, currentName, currentId, classId)
     }
@@ -57,32 +62,23 @@ function Page() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(
-        'https://classroom-backend-u7q5.onrender.com/api/full/',
-        {
-          method: 'GET',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
+      const response = await fetch('http://localhost:2000/api/full/', {
+        method: 'GET',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      })
       const data = await response.json()
-      const response2 = await fetch(
-        'https://classroom-backend-u7q5.onrender.com/api/me/',
-        {
-          method: 'GET',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
+      const response2 = await fetch('http://localhost:2000/api/me/', {
+        method: 'GET',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      })
       const data3 = await response2.json()
-      const response3 = await fetch(
-        'https://classroom-backend-u7q5.onrender.com/api/class_member',
-        {
-          method: 'GET',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
+      const response3 = await fetch('http://localhost:2000/api/class_member', {
+        method: 'GET',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      })
       const data4 = await response3.json()
       setData10(data4)
       setCurrentId(data3['message']['id'])
@@ -92,26 +88,27 @@ function Page() {
     fetchData()
   }, [])
   useEffect(() => {
-    if (socket && currentName && mname) {
-      socket.emit('set-name', currentName, mname)
-      socket.on('find_online', (data) => {
-        setOnline(data)
+    if (data2.length > 0 && currentId) {
+      console.log(data2)
+
+      data2.map((item) => {
+        if (currentId === item.madeById) {
+          setClassName(item.id)
+          return
+        }
       })
     }
-  }, [online, mname, socket, currentName])
+  }, [currentId, data2, setClassName])
 
   useEffect(() => {
     async function fetchy() {
       const pinp = document.getElementById('imp')
-      const response10 = await fetch(
-        'https://classroom-backend-u7q5.onrender.com/api/people',
-        {
-          method: 'POST',
-          body: JSON.stringify({ id: chatName }),
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
+      const response10 = await fetch('http://localhost:2000/api/people', {
+        method: 'POST',
+        body: JSON.stringify({ id: className }),
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      })
 
       if (!response10.ok) {
         console.error('Error during POST request:', response10.statusText)
@@ -121,28 +118,25 @@ function Page() {
         setClassId(dataTemp['id'])
       }
     }
-    if (chatName) {
+    if (className) {
       fetchy()
     }
-  }, [chatName])
+  }, [className])
   useEffect(() => {
     const f = async () => {
-      const rep = await fetch(
-        'https://classroom-backend-u7q5.onrender.com/api/full_message',
-        {
-          method: 'POST',
-          body: JSON.stringify({ id: chatName }),
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
+      const rep = await fetch('http://localhost:2000/api/full_message', {
+        method: 'POST',
+        body: JSON.stringify({ id: className }),
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      })
       const data = await rep.json()
       setInitialMess(data)
     }
     if (!(mname === '')) {
       f()
     }
-  }, [mname, chatName])
+  }, [mname, className])
   useEffect(() => {
     if (socket && currentId) {
       const messages = document.getElementById('yay')
@@ -158,44 +152,14 @@ function Page() {
         messages.appendChild(main)
         main.appendChild(item1)
         main.appendChild(item2)
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: 'smooth', // Optionally, you can add smooth scrolling behavior
-        })
+        router.push('#scrollTo')
       })
     }
   }, [socket, currentId])
-
   return (
     <>
       <h1 className="headha">Chat</h1>
-      <select
-        id="imp"
-        className="inp"
-        onChange={(e) => {
-          setChatName(e.target.value)
-        }}
-      >
-        <option value=""> </option>
-        {data2.map((item) => {
-          if (item.madeById === currentId) {
-            return (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            )
-          }
-        })}
-        {data10.map((item) => {
-          return (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
-          )
-        })}
-      </select>
-      {!chatName && <p className="ns">No class selected...</p>}
-      {chatName && <p className="ns2">{mname}</p>}
+      {className && <p className="ns2">{mname}</p>}
       <div className="messagesContainer" id="yay">
         {initialMess.map((item) => (
           <div
@@ -209,6 +173,7 @@ function Page() {
           </div>
         ))}
       </div>
+      <div style={{ marginBottom: '300px' }} id="scrollTo"></div>
       <form className="stickyFooter" onSubmit={handleClick}>
         <div className="inputContainer">
           <input
@@ -225,23 +190,6 @@ function Page() {
           </button>
         </div>
       </form>
-      <br />
-      <br />
-      <br />
-      <br />
-      {chatName && (
-        <div className="container2">
-          <p className="on">Online</p>
-          {online.map((item) => {
-            return (
-              <div key={item} className="ons">
-                <button className="initial2">{item['name'].slice(0, 1)}</button>
-                <p style={{ margin: 0 }}>{item['name']}</p>
-              </div>
-            )
-          })}
-        </div>
-      )}
     </>
   )
 }

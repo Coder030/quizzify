@@ -36,27 +36,21 @@ function Page() {
       },
     }
 
-    const response = await fetch(
-      'https://classroom-backend-u7q5.onrender.com/api/make_class',
-      {
-        method: 'POST',
-        body: JSON.stringify(ob1),
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    )
+    const response = await fetch('http://localhost:2000/api/make_class', {
+      method: 'POST',
+      body: JSON.stringify(ob1),
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+    })
     router.push('/')
   }
   useEffect(() => {
     async function fetchData() {
-      const response2 = await fetch(
-        'https://classroom-backend-u7q5.onrender.com/api/me/',
-        {
-          method: 'GET',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
+      const response2 = await fetch('http://localhost:2000/api/me/', {
+        method: 'GET',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      })
       const data3 = await response2.json()
       setCurrentId(data3['message']['id'])
     }

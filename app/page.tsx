@@ -19,22 +19,16 @@ export default function Home() {
   const { className, setClassName } = useContext(ClassContext)
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        'https://classroom-backend-u7q5.onrender.com/api/full/',
-        {
-          method: 'GET',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
-      const response2 = await fetch(
-        'https://classroom-backend-u7q5.onrender.com/api/me/',
-        {
-          method: 'GET',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
+      const response = await fetch('http://localhost:2000/api/full/', {
+        method: 'GET',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      const response2 = await fetch('http://localhost:2000/api/me/', {
+        method: 'GET',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      })
       const data2 = await response.json()
       const data3 = await response2.json()
       setCurrentId(data3['message']['id'])
@@ -75,7 +69,7 @@ export default function Home() {
             if (item.madeById === currentId) {
               return (
                 <>
-                  <div className="classes" key={item.name}>
+                  <div className="classes" key={item.id}>
                     <p className="name">{item.name}</p>
                     <p className="code">
                       Class code: {item.code}{' '}
@@ -97,7 +91,7 @@ export default function Home() {
                       className="delete"
                       onClick={async () => {
                         const response = await fetch(
-                          `https://classroom-backend-u7q5.onrender.com/api/${item.id}`,
+                          `http://localhost:2000/api/${item.id}`,
                           {
                             method: 'DELETE',
                             credentials: 'include',
